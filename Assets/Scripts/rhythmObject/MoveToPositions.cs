@@ -23,12 +23,11 @@ namespace Rhythmify {
             StartCoroutine(move(positions [idx % size], positions [(idx + 1) % size], secondsPerBeat));
         }
     
-        private IEnumerator move(Vector3 startPos, Vector3 endPos, float duration, float beatMod = 1) {
-            //duration = seconds per beat.
+        private IEnumerator move(Vector3 startPos, Vector3 endPos, float duration) {
             float startTime = Time.time;
         
             while (Time.time <= startTime + duration) {
-                float lerpPercent = Mathf.Clamp01((Time.time - startTime) / (duration * beatMod));
+                float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
                 transform.position = Vector3.Lerp(startPos, endPos, lerpPercent);
                 yield return null;
             }
