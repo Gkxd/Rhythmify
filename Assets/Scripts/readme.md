@@ -23,8 +23,8 @@ To use this script, attach it as a component to a GameObject that has an AudioSo
  3. Set the `loopThreshold` to some time greater than the length of the intro + one loop, but less than the length of the entire track you created in step 1.
 
 ####Useful Fields
-- `public int BPM`: Tempo of the audio clip in beats per minute.
-- `public float loopLength`: The length of the looping portion of the audio clip in seconds. Only used for audio clips that have a non-looping intro and a looping part. Set to 0 if there is no non-looping intro. 
-- `public float loopThreshold`: Amount of seconds to wait before looping back partially. Only used for audio clips that have a non-looping intro and a looping part. Set to 0 if there is no non-looping intro.
+- **`public int BPM`:** Tempo of the audio clip in beats per minute.
+- **`public float loopLength`:** The length of the looping portion of the audio clip in seconds. Only used for audio clips that have a non-looping intro and a looping part. Set to 0 if there is no non-looping intro. 
+- **`public float loopThreshold`:** Amount of seconds to wait before looping back partially. Only used for audio clips that have a non-looping intro and a looping part. Set to 0 if there is no non-looping intro.
 
 ___
