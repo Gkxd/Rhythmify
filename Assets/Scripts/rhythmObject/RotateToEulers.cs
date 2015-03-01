@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/* @Author: Gkxd
+ * 
+ * Rotates a GameObject to a list of specified Euler angles
+ * 
+ * */
+
+using UnityEngine;
 using System.Collections;
 
 namespace Rhythmify {
