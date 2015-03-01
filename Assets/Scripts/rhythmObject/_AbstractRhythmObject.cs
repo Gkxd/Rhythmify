@@ -16,6 +16,16 @@ namespace Rhythmify {
         private int lastBeatUpdate = -1;
 
         public void Start() {
+            GameObject[] bgmContainers = GameObject.FindGameObjectsWithTag("Rhythmify_Music");
+            if (bgmContainers.Length > 1) {
+                Debug.LogError("This scene contains more than 1 background music.");
+                Debug.Break();
+            }
+            else if (bgmContainers.Length < 1) {
+                Debug.LogError("This scene must contain 1 GameObject tagged with \"Rhythmify_Music\".");
+                Debug.Break();
+            }
+
             GameObject bgmContainer = GameObject.FindGameObjectWithTag("Rhythmify_Music");
         
             audioSource = bgmContainer.audio;
