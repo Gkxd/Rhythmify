@@ -12,7 +12,7 @@ ___
 ###<a id="MusicWrapper.cs"></a>[MusicWrapper.cs](./MusicWrapper.cs)
 This script holds user-specified information about audio clips.
 ####Usage
-To use this script, attach it as a component to a GameObject that has an AudioSource component. Then set the tag of that GameObject to *Rhythmify_Music*.
+To use this script, attach it as a component to a GameObject that has an AudioSource component. Then set the tag of that GameObject to `"Rhythmify_Music"`.
 ######For looping audio tracks:
 - If the entire audio track is meant to loop, then set `loopLength` and `loopThreshold` to 0.
 - If the audio track consists of an introduction section followed by a looping portion
