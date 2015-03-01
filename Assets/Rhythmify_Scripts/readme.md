@@ -22,9 +22,24 @@ To use this script, attach it as a component to a GameObject that has an AudioSo
  2. Set `loopLength` to the length of the looping portion in seconds.
  3. Set the `loopThreshold` to some time greater than the length of the intro + one loop, but less than the length of the entire track you created in step 1.
 
-####Useful Fields
-- **`public int BPM`:** Tempo of the audio clip in beats per minute.
-- **`public float loopLength`:** The length of the looping portion of the audio clip in seconds. Only used for audio clips that have a non-looping intro and a looping part. Set to 0 if there is no non-looping intro. 
-- **`public float loopThreshold`:** Amount of seconds to wait before looping back partially. Only used for audio clips that have a non-looping intro and a looping part. Set to 0 if there is no non-looping intro.
+####Field Summary
+Type and Modifiers | Field Name
+--- | ---:
+`public int` | [`BPM`](#BPM)
+`public float` | [`loopLength`](#loopLength)
+`public float` | [`loopThreshold`](#loopThreshold)
+
+####Field Descriptions
+<a name="BPM"></a>
+>**`public int BPM`**  
+>Tempo of the audio clip in beats per minute.
+
+<a name="loopLength"></a>
+>**`public float loopLength`**  
+>The length of the looping portion of the audio clip in seconds. Only used for audio clips that have a non-looping intro and a looping part. Set to 0 if there is no non-looping intro. 
+
+<a name="loopThreshold"></a>
+>**`public float loopThreshold`**  
+>Amount of seconds to wait before looping back partially. Only used for audio clips that have a non-looping intro and a looping part. Set to 0 if there is no non-looping intro.
 
 ___
