@@ -3,7 +3,6 @@
  * Moves a GameObject to a list of specified positions
  * 
  * */
-
 using UnityEngine;
 using System.Collections;
 

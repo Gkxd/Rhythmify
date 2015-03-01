@@ -3,7 +3,6 @@
  * Contains basic framework that syncs objects to the beat
  * 
  * */
-
 using UnityEngine;
 using System.Collections;
 
