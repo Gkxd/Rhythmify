@@ -21,13 +21,12 @@ To create your own script that does things with the beat of the music, create a 
 - **`protected virtual void asyncUpdate()`:** This is the replacement for the `Update()` that Unity generates.
 - **`protected abstract void rhythmUpdate(int beat)`:** This function will be executed once every beat.  
 
-  *Parameters:*  
-  **`beat`:** The number of beats that have elapsed since the beginning of the clip
-
+  >*Parameters:*  
+  >**`beat`:** The number of beats that have elapsed since the beginning of the clip
 - **`protected bool onBeat(float deltaSeconds)`:** This function will return true if the current time is close enough to a beat. This allows you to detect whether player input is on beat or not.  
-  
-  *Parameters:*  
-  **`deltaSeconds`:** The number of seconds that the current time can be off by. Note that the window of time is twice as long, since this checks before and after the beat.
+
+  >*Parameters:*  
+  >**`deltaSeconds`:** The number of seconds that the current time can be off by. Note that the window of time is twice as long, since this checks before and after the beat.
 
 ___
 ###<a name="MoveToPositions.cs"></a>[MoveToPositions.cs](./MoveToPositions.cs)
