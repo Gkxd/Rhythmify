@@ -6,7 +6,7 @@ This directory contains scripts that control GameObjects with the beat of the mu
 - **[RotateToEulers.cs](#RotateToEulers.cs):** Rotates a GameObject to a list of specified Euler angles.
 
 ##Script Documentation
-###<a name="_AbstractRhythmObject.cs"></a>[_AbstractRhythmObject.cs](./AbstractRhythmObject.cs)
+###<a name="_AbstractRhythmObject.cs"></a>[_AbstractRhythmObject.cs](./_AbstractRhythmObject.cs)
 This script contains the basic framework for synchronizing events with the beat.
 ####Usage
 To create your own script that does things with the beat of the music, create a script that extends `_AbstractRhythmObject` instead of `MonoBehaviour`. Then implement the `rhythmUpdate()` function, which gets executed once every beat.
