@@ -14,6 +14,7 @@ namespace Rhythmify {
         private AudioSource audioSource;
         private AudioClip audioClip;
         private int lastBeatUpdate = -1;
+        private int beatCount = 0;
 
         public void Start() {
             GameObject[] bgmContainers = GameObject.FindGameObjectsWithTag("Rhythmify_Music");
@@ -42,9 +43,9 @@ namespace Rhythmify {
         
             if (beat != lastBeatUpdate) {
                 lastBeatUpdate = beat;
-                rhythmUpdate(beat);
+                rhythmUpdate(beatCount++);
             }
-        
+
             asyncUpdate();
         }
     
