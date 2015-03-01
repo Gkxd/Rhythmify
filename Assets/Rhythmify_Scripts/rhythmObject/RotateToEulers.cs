@@ -10,6 +10,7 @@ namespace Rhythmify {
     public class RotateToEulers : _AbstractRhythmObject {
         public Vector3[] eulerAngles;
         public int offset;
+        public bool local;
         public bool spherical;
     
         override protected void rhythmUpdate(int beat) {
@@ -24,31 +25,44 @@ namespace Rhythmify {
             Quaternion startRot = Quaternion.Euler(eulerAngles [idx % size]);
             Quaternion endRot = Quaternion.Euler(eulerAngles [(idx + 1) % size]);
         
+
+            StartCoroutine(rotate(startRot, endRot, secondsPerBeat));
+        }
+    
+        private IEnumerator rotate(Quaternion startRot, Quaternion endRot, float duration) {
+            float startTime = Time.time;
+
             if (spherical) {
-                StartCoroutine(sphericalRotate(startRot, endRot, secondsPerBeat));
+                if (local) {
+                    while (Time.time <= startTime + duration) {
+                        float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
+                        transform.localRotation = Quaternion.Slerp(startRot, endRot, lerpPercent);
+                        yield return null;
+                    }
+                }
+                else{
+                    while (Time.time <= startTime + duration) {
+                        float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
+                        transform.rotation = Quaternion.Slerp(startRot, endRot, lerpPercent);
+                        yield return null;
+                    }
+                }
             }
             else {
-                StartCoroutine(linearRotate(startRot, endRot, secondsPerBeat));
-            }
-        }
-    
-        private IEnumerator linearRotate(Quaternion startRot, Quaternion endRot, float duration) {
-            float startTime = Time.time;
-        
-            while (Time.time <= startTime + duration) {
-                float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
-                transform.rotation = Quaternion.Lerp(startRot, endRot, lerpPercent);
-                yield return null;
-            }
-        }
-    
-        private IEnumerator sphericalRotate(Quaternion startRot, Quaternion endRot, float duration) {
-            float startTime = Time.time;
-        
-            while (Time.time <= startTime + duration) {
-                float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
-                transform.rotation = Quaternion.Slerp(startRot, endRot, lerpPercent);
-                yield return null;
+                if (local) {
+                    while (Time.time <= startTime + duration) {
+                        float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
+                        transform.localRotation = Quaternion.Lerp(startRot, endRot, lerpPercent);
+                        yield return null;
+                    }
+                }
+                else {
+                    while (Time.time <= startTime + duration) {
+                        float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
+                        transform.rotation = Quaternion.Lerp(startRot, endRot, lerpPercent);
+                        yield return null;
+                    }
+                }
             }
         }
     }
