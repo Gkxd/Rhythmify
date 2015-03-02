@@ -9,6 +9,7 @@ using System.Collections;
 namespace Rhythmify {
     public class RotateToEulers : _AbstractRhythmObject {
         public Vector3[] eulerAngles;
+        public int[] indices;
         public int offset;
         public bool local;
         public bool spherical;
@@ -21,10 +22,20 @@ namespace Rhythmify {
             }
         
             int idx = beat + offset;
-        
-            Quaternion startRot = Quaternion.Euler(eulerAngles [idx % size]);
-            Quaternion endRot = Quaternion.Euler(eulerAngles [(idx + 1) % size]);
-        
+
+            Quaternion startRot;
+            Quaternion endRot;
+
+            if (indices.Length > 0) {
+                int idxA = indices[idx % indices.Length];
+                int idxB = indices[(idx + 1) % indices.Length];
+                startRot = Quaternion.Euler(eulerAngles [idxA % size]);
+                endRot = Quaternion.Euler(eulerAngles [idxB % size]);
+            }
+            else {
+                startRot = Quaternion.Euler(eulerAngles [idx % size]);
+                endRot = Quaternion.Euler(eulerAngles [(idx + 1) % size]);
+            }
 
             StartCoroutine(rotate(startRot, endRot, secondsPerBeat));
         }

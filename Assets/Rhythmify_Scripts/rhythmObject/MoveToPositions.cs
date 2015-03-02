@@ -9,6 +9,7 @@ using System.Collections;
 namespace Rhythmify {
     public class MoveToPositions : _AbstractRhythmObject {
         public Vector3[] positions;
+        public int[] indices;
         public int offset;
         public bool local;
     
@@ -18,10 +19,16 @@ namespace Rhythmify {
             if (size <= 1) {
                 return;
             }
-        
+            
             int idx = beat + offset;
-
-            StartCoroutine(move(positions [idx % size], positions [(idx + 1) % size], secondsPerBeat));
+            if (indices.Length > 0) {
+                int idxA = indices[idx % indices.Length];
+                int idxB = indices[(idx + 1) % indices.Length];
+                StartCoroutine(move(positions [idxA % size], positions [idxB % size], secondsPerBeat));
+            }
+            else {
+                StartCoroutine(move(positions [idx % size], positions [(idx + 1) % size], secondsPerBeat));
+            }
         }
     
         private IEnumerator move(Vector3 startPos, Vector3 endPos, float duration) {
