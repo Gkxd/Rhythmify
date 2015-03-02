@@ -59,6 +59,48 @@ Return Type and Modifiers | Function Name and Parameters
 >- **`deltaSeconds`:** The number of seconds that the current time can be off by. Note that the window of time is twice as long, since this checks before and after the beat.
 
 ___
+###<a name="ChangeColors.cs"></a>[ChangeColors.cs](./ChangeColors.cs)
+This script is an example usage of [`_AbstractRhythmObject`](#_AbstractRhythmObject.cs). This applies a series of color transitions to a GameObject if the GameObject has a material with a color setting.
+
+####Usage
+To use this script, attach it to a GameObject. Then specify the color transitions that you want to apply to the GameObject.
+
+<a name="ColorTransition"></a>
+######ColorTransition
+This script uses a second class called `ColorTransition`. `ColorTransitions` is a container for holding information relevant to a color transition. The field descriptions for a `ColorTransition` is as follows:
+<a name="endColor"></a>
+>**`public Color endColor`**
+>The ending color of the transition.
+
+<a name="smooth"></a>
+>**`public bool smooth`**
+>Determines whether the transition will be smooth or not. If true, [`startColor`](#startColor) and [`endColor`](#endColor) will be interpolated in the middle of a beat. If false the material color will be immediately set to [`endColor`](#endColor).
+
+<a name="startColor"></a>
+>**`public Color startColor`**  
+>The starting color of the transition. This will only be used if [`smooth`](#smooth) is true.
+
+####Field Summary
+Type and Modifiers | Field Name
+--- | ---:
+`public ColorTransition[]` | [`colorTransitions`](#colorTransitions)
+`public int[]` | [`indices`](#ChangeColors_indices)
+`public int` | [`offset`](#ChangeColors_offset)
+
+####Field Descriptions
+<a name="colorTransitions"></a>
+>**`public ColorTransition[] colorTransitions`**  
+>The list of [`ColorTransition`](#ColorTransition) objects that you want to apply to a GameObject.
+
+<a name="ChangeColors_indices"></a>
+>**`public int[] indices`**  
+>Indices into the [`colorTransitions`](#colorTransitions) array that specfies the order in which the color transitions will be applied to the GameObject. If the size of this array is 0, the color transitions in the [`colorTransitions`](#colorTransitions) array will be used in a round-robin style. If a negative index is specified, the current color will be held.
+
+<a name="ChangeColors_offset"></a>
+>**`public int offset`**  
+>If [`indices`](#ChangeColors_indices) has 0 elements, this is the index of [`colorTransitions`](#colorTransitions) array that you want to start at. Otherwise, this is the index of the [`indices`](#ChangeColors_indices) array that you want to start at.
+
+___
 ###<a name="MoveToPositions.cs"></a>[MoveToPositions.cs](./MoveToPositions.cs)
 This script is an example usage of [`_AbstractRhythmObject`](#_AbstractRhythmObject.cs). This translates a GameObject through a list of positions, one at a time, in a round-robin style by default.
 
@@ -68,23 +110,23 @@ To use this script, attach it to a GameObject. Then specify the positions that y
 ####Field Summary
 Type and Modifiers | Field Name
 --- | ---:
-`public int[]` | [`indices`](#indices0)
-`public bool` | [`local`](#local0)
-`public int` | [`offset`](#offset0)
+`public int[]` | [`indices`](#MoveToPositions_indices)
+`public bool` | [`local`](#MoveToPositions_local)
+`public int` | [`offset`](#MoveToPositions_offset)
 `public Vector3[]` | [`positions`](#positions)
 
 ####Field Descriptions
-<a name="indices0">
+<a name="MoveToPositions_indices">
 >**`public int[] indices`**  
 >Indices into the [`positions`](#positions) array that specfies the order of the positions through which the GameObject will travel. If the size of this array is 0, the positions in the [`positions`](#positions) array will be used in a round-robin style.
 
-<a name="local0"></a>
+<a name="MoveToPositions_local"></a>
 >**`public bool local`**  
 >If true, will transform relative to local coordinates instead of world coordinates.
 
-<a name="offset0"></a>
+<a name="MoveToPositions_offset"></a>
 >**`public int offset`**  
->If [`indices`](#indices0) has 0 elements, this is the index of [`positions`](#positions) array that you want to start at. Otherwise, this is the index of the [`indices`](#indices0) array that you want to start at.
+>If [`indices`](#MoveToPositions_indices) has 0 elements, this is the index of [`positions`](#positions) array that you want to start at. Otherwise, this is the index of the [`indices`](#MoveToPositions_indices) array that you want to start at.
 
 <a name="positions"></a>
 >**`public Vector3[] positions`**  
@@ -101,9 +143,9 @@ To use this script, attach it to a GameObject. Then specify the rotations that y
 Type and Modifiers | Field Name
 --- | ---:
 `public Vector3[]` | [`eulerAngles`](#eulerAngles)
-`public int[]` | [`indices`](#indices1)
-`public bool` | [`local`](#local1)
-`public int` | [`offset`](#offset1)
+`public int[]` | [`indices`](#RotateToEulers_indices)
+`public bool` | [`local`](#RotateToEulers_local)
+`public int` | [`offset`](#RotateToEulers_offset)
 `public bool` | [`spherical`](#spherical)
 
 ####Field Descriptions
@@ -111,17 +153,17 @@ Type and Modifiers | Field Name
 >**`public Vector3[] eulerAngles`**  
 >The list of Euler angle rotations that the GameObject will rotate through.
 
-<a name="indices1">
+<a name="RotateToEulers_indices">
 >**`public int[] indices`**  
 >Indices into the [`eulerAngles`](#eulerAngles) array that specfies the order of the rotations through which the GameObject will travel. If the size of this array is 0, the rotations in the [`eulerAngles`](#eulerAngles) array will be used in a round-robin style.
 
-<a name="local1"></a>
+<a name="RotateToEulers_local"></a>
 >**`public bool local`**  
 >If true, will transform relative to local coordinates instead of world coordinates.
 
-<a name="offset1"></a>
+<a name="RotateToEulers_offset"></a>
 >**`public int offset`**  
->If the [`indices`](#indices1) array has 0 elements, this is the index of the [`eulerAngles`](#eulerAngles) that you want to start at. Otherwise, this is the index of the [`indices`](#indices1) array that you want to start at.
+>If the [`indices`](#RotateToEulers_indices) array has 0 elements, this is the index of the [`eulerAngles`](#eulerAngles) that you want to start at. Otherwise, this is the index of the [`indices`](#RotateToEulers_indices) array that you want to start at.
 
 <a name="spherical"></a>
 >**`public bool spherical`**  
