@@ -2,6 +2,7 @@ This directory contains scripts that control GameObjects with the beat of the mu
 
 ##Scripts
 - **[_AbstractRhythmObject.cs](#_AbstractRhythmObject.cs):** Contains basic framework common to all rhythm synced game objects
+- **[ChangeColors.cs](#ChangeColors.cs):** Applies color transitions to a game object.
 - **[MoveToPositions.cs](#MoveToPositions.cs):** Moves a GameObject to a list of specified positions.
 - **[RotateToEulers.cs](#RotateToEulers.cs):** Rotates a GameObject to a list of specified Euler angles.
 
@@ -59,7 +60,7 @@ Return Type and Modifiers | Function Name and Parameters
 
 ___
 ###<a name="MoveToPositions.cs"></a>[MoveToPositions.cs](./MoveToPositions.cs)
-This script is an example usage of [`_AbstractRhythmObject`](#_AbstractRhythmObject.cs). This translates a GameObject through a list of positions, one at a time, in a round-robin style.
+This script is an example usage of [`_AbstractRhythmObject`](#_AbstractRhythmObject.cs). This translates a GameObject through a list of positions, one at a time, in a round-robin style by default.
 
 ####Usage
 To use this script, attach it to a GameObject. Then specify the positions that you want the GameObject to travel through in the inspector.
@@ -67,26 +68,31 @@ To use this script, attach it to a GameObject. Then specify the positions that y
 ####Field Summary
 Type and Modifiers | Field Name
 --- | ---:
+`public int[]` | [`indices`](#indices0)
 `public bool` | [`local`](#local0)
 `public int` | [`offset`](#offset0)
 `public Vector3[]` | [`positions`](#positions)
 
 ####Field Descriptions
+<a name="indices0">
+>**`public int[] indices`**  
+>Indices into the [`positions`](#positions) array that specfies the order of the positions through which the GameObject will travel. If the size of this array is 0, the positions in the [`positions`](#positions) array will be used in a round-robin style.
+
 <a name="local0"></a>
->**`public bool local`**
+>**`public bool local`**  
 >If true, will transform relative to local coordinates instead of world coordinates.
 
 <a name="offset0"></a>
->**`public int offset`**
->The position that you want to start at.
+>**`public int offset`**  
+>If [`indices`](#indices0) has 0 elements, this is the index of [`positions`](#positions) array that you want to start at. Otherwise, this is the index of the [`indices`](#indices0) array that you want to start at.
 
 <a name="positions"></a>
->**`public Vector3[] positions`**
+>**`public Vector3[] positions`**  
 >The list of positions that the GameObject will travel through.
 
 ___
 ###<a name="RotateToEulers.cs"></a>[RotateToEulers.cs](./RotateToEulers.cs)
-This script is an example usage of [`_AbstractRhythmObject`](#_AbstractRhythmObject.cs). This rotates a GameObject through a list of Euler angle rotations, one at a time, in a round-robin style.
+This script is an example usage of [`_AbstractRhythmObject`](#_AbstractRhythmObject.cs). This rotates a GameObject through a list of Euler angle rotations, one at a time, in a round-robin style by default.
 
 ####Usage
 To use this script, attach it to a GameObject. Then specify the rotations that you want the GameObject to travel through in the inspector.
@@ -95,6 +101,7 @@ To use this script, attach it to a GameObject. Then specify the rotations that y
 Type and Modifiers | Field Name
 --- | ---:
 `public Vector3[]` | [`eulerAngles`](#eulerAngles)
+`public int[]` | [`indices`](#indices1)
 `public bool` | [`local`](#local1)
 `public int` | [`offset`](#offset1)
 `public bool` | [`spherical`](#spherical)
@@ -102,7 +109,11 @@ Type and Modifiers | Field Name
 ####Field Descriptions
 <a name="eulerAngles"></a>
 >**`public Vector3[] eulerAngles`**  
->This list of Euler angle rotations that the GameObject will rotate through.
+>The list of Euler angle rotations that the GameObject will rotate through.
+
+<a name="indices1">
+>**`public int[] indices`**  
+>Indices into the [`eulerAngles`](#eulerAngles) array that specfies the order of the rotations through which the GameObject will travel. If the size of this array is 0, the rotations in the [`eulerAngles`](#eulerAngles) array will be used in a round-robin style.
 
 <a name="local1"></a>
 >**`public bool local`**  
@@ -110,7 +121,7 @@ Type and Modifiers | Field Name
 
 <a name="offset1"></a>
 >**`public int offset`**  
->The rotation that you want to start at.
+>If the [`indices`](#indices1) array has 0 elements, this is the index of the [`eulerAngles`](#eulerAngles) that you want to start at. Otherwise, this is the index of the [`indices`](#indices1) array that you want to start at.
 
 <a name="spherical"></a>
 >**`public bool spherical`**  
