@@ -1,2 +1,2 @@
 #Music Credits
-**[Really Sly Fox Comp - Yahtzei](http://www.newgrounds.com/audio/listen/610745)**
+[Pixel Party - ryzikx](http://www.newgrounds.com/audio/listen/599502)
