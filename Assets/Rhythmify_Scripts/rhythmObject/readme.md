@@ -38,13 +38,18 @@ Type and Modifiers | Field Name
 Return Type and Modifiers | Function Name and Parameters
 --- | ---:
 `protected virtual void` | [`asyncUpdate()`](#asyncUpdate)
+`protected virtual void` | [`init()`](#init)
 `protected abstract void` | [`rhythmUpdate(int beat)`](#rhythmUpdate)
 `protected bool` | [`onBeat()`](#onBeat)
 
 ####Function Descriptions
-<a name="asyncUpdate()"></a>
->**`protected virtual void asyncUpdate`**  
->This is the replacement for the `Update()` that Unity generates.
+<a name="asyncUpdate"></a>
+>**`protected virtual void asyncUpdate()`**  
+>This is the replacement for the `Update()` function that Unity generates.
+
+<a name="init"></a>
+>**`protected virtual void init()`**  
+>This is the replacement for the `Start()` function that Unity generates.
 
 <a name="rhythmUpdate"></a>
 >**`protected abstract void rhythmUpdate(int beat)`**  
@@ -114,6 +119,7 @@ Type and Modifiers | Field Name
 `public bool` | [`local`](#MoveToPositions_local)
 `public int` | [`offset`](#MoveToPositions_offset)
 `public Vector3[]` | [`positions`](#positions)
+`public bool` | [`relative`](#MoveToPositions_relative)
 
 ####Field Descriptions
 <a name="MoveToPositions_indices">
@@ -131,6 +137,10 @@ Type and Modifiers | Field Name
 <a name="positions"></a>
 >**`public Vector3[] positions`**  
 >The list of positions that the GameObject will travel through.
+
+<a name="MoveToPositions_relative"></a>
+>**`public bool relative`**  
+>If true, the positions in the [`positions`](#positions) array are relative to the start position of the GameObject.
 
 ___
 ###<a name="RotateToEulers.cs"></a>[RotateToEulers.cs](./RotateToEulers.cs)
