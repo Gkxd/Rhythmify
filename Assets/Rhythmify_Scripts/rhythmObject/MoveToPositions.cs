@@ -12,7 +12,23 @@ namespace Rhythmify {
         public int[] indices;
         public int offset;
         public bool local;
-    
+        public bool relative;
+
+        private Vector3 startPosition;
+        override protected void init() {
+            if (relative) {
+                if (local) {
+                    startPosition = gameObject.transform.localPosition;
+                }
+                else {
+                    startPosition = gameObject.transform.position;
+                }
+            }
+            else {
+                startPosition = Vector3.zero;
+            }
+        }
+
         override protected void rhythmUpdate(int beat) {
             int size = positions.Length;
         
@@ -37,6 +53,7 @@ namespace Rhythmify {
                 while (Time.time <= startTime + duration) {
                     float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
                     transform.localPosition = Vector3.Lerp(startPos, endPos, lerpPercent);
+                    transform.localPosition += startPosition;
                     yield return null;
                 }
             }
@@ -44,6 +61,7 @@ namespace Rhythmify {
                 while (Time.time <= startTime + duration) {
                     float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
                     transform.position = Vector3.Lerp(startPos, endPos, lerpPercent);
+                    transform.localPosition += startPosition;
                     yield return null;
                 }
             }

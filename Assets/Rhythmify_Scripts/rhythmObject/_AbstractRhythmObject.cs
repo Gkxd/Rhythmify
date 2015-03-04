@@ -36,6 +36,8 @@ namespace Rhythmify {
         
             secondsPerBeat = 60.0f / BPM;
             samplesPerBeat = secondsPerBeat * audioClip.frequency;
+
+            init();
         }
     
         public void Update() {
@@ -53,6 +55,9 @@ namespace Rhythmify {
             float beatOffset = audioSource.timeSamples % samplesPerBeat;
             float deltaSamples = deltaSeconds * audioClip.frequency;
             return beatOffset < deltaSamples || samplesPerBeat - beatOffset < deltaSamples;
+        }
+
+        protected virtual void init() {
         }
 
         protected virtual void asyncUpdate() {
