@@ -13,6 +13,7 @@ namespace Rhythmify {
         public ColorTransition[] colorTransitions;
         public int[] indices;
         public int offset;
+        public bool shared;
 
         override protected void rhythmUpdate(int beat) {
             int size = colorTransitions.Length;
@@ -36,7 +37,12 @@ namespace Rhythmify {
                 StartCoroutine(changeSmooth(t.startColor, t.endColor, secondsPerBeat));
             }
             else {
-                renderer.material.color = t.endColor;
+                if (shared) {
+                    renderer.sharedMaterial.color = t.endColor;
+                }
+                else {
+                    renderer.material.color = t.endColor;
+                }
             }
         }
 
@@ -44,7 +50,12 @@ namespace Rhythmify {
             float startTime = Time.time;
             while (Time.time <= startTime + duration) {
                 float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
-                renderer.material.color = Color.Lerp(startColor, endColor, lerpPercent);
+                if (shared) {
+                    renderer.sharedMaterial.color = Color.Lerp(startColor, endColor, lerpPercent);
+                }
+                else {
+                    renderer.material.color = Color.Lerp(startColor, endColor, lerpPercent);
+                }
                 yield return null;
             }
         }
