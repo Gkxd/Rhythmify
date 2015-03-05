@@ -91,6 +91,7 @@ Type and Modifiers | Field Name
 `public ColorTransition[]` | [`colorTransitions`](#colorTransitions)
 `public int[]` | [`indices`](#ChangeColors_indices)
 `public int` | [`offset`](#ChangeColors_offset)
+`public bool` | [`shared`](#shared)
 
 ####Field Descriptions
 <a name="colorTransitions"></a>
@@ -104,6 +105,10 @@ Type and Modifiers | Field Name
 <a name="ChangeColors_offset"></a>
 >**`public int offset`**  
 >If [`indices`](#ChangeColors_indices) has 0 elements, this is the index of [`colorTransitions`](#colorTransitions) array that you want to start at. Otherwise, this is the index of the [`indices`](#ChangeColors_indices) array that you want to start at.
+
+<a name="shared"></a>
+>**`public bool shared`**
+>If true, this will change the shared material's color instead of creating a copy of the material. Use this if you want every object that uses the material to be changed in the same way. Changes to the shared material will stay after the game resets.
 
 ___
 ###<a name="MoveToPositions.cs"></a>[MoveToPositions.cs](./MoveToPositions.cs)
