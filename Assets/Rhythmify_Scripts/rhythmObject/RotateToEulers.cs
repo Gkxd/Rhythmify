@@ -60,7 +60,7 @@ namespace Rhythmify {
                 if (rigid && rigidBody != null) {
                     while (Time.time <= startTime + duration) {
                         float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
-                        rigidBody.rotation = Quaternion.Slerp(startRot, endRot, lerpPercent);
+                        rigidBody.MoveRotation(Quaternion.Slerp(startRot, endRot, lerpPercent));
                         yield return null;
                     }
                 }
@@ -83,7 +83,7 @@ namespace Rhythmify {
                 if (rigid && rigidBody != null) {
                     while (Time.time <= startTime + duration) {
                         float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
-                        rigidBody.rotation = Quaternion.Lerp(startRot, endRot, lerpPercent);
+                        rigidBody.MoveRotation(Quaternion.Lerp(startRot, endRot, lerpPercent));
                         yield return null;
                     }
                 }

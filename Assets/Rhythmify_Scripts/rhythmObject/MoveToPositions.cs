@@ -64,7 +64,7 @@ namespace Rhythmify {
             if (rigid && rigidBody != null) {
                 while (Time.time <= startTime + duration) {
                     float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
-                    rigidBody.position = Vector3.Lerp(startPos, endPos, lerpPercent) + startPosition;
+                    rigidBody.MovePosition(Vector3.Lerp(startPos, endPos, lerpPercent) + startPosition);
                     yield return null;
                 }
             }
