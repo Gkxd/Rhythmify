@@ -12,8 +12,21 @@ namespace Rhythmify {
         public int[] indices;
         public int offset;
         public bool local;
+        public bool rigid;
         public bool spherical;
-    
+        
+        private Rigidbody rigidBody;
+
+        override protected void init() {
+            if (rigid) {
+                rigidBody = gameObject.GetComponent<Rigidbody>();
+                if (rigidBody == null) {
+                    Debug.LogError("The GameObject " + gameObject + " has no RigidBody component attached!");
+                    Debug.Break();
+                }
+            }
+        }
+
         override protected void rhythmUpdate(int beat) {
             int size = eulerAngles.Length;
         
@@ -44,7 +57,14 @@ namespace Rhythmify {
             float startTime = Time.time;
 
             if (spherical) {
-                if (local) {
+                if (rigid && rigidBody != null) {
+                    while (Time.time <= startTime + duration) {
+                        float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
+                        rigidBody.rotation = Quaternion.Slerp(startRot, endRot, lerpPercent);
+                        yield return null;
+                    }
+                }
+                else if (local) {
                     while (Time.time <= startTime + duration) {
                         float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
                         transform.localRotation = Quaternion.Slerp(startRot, endRot, lerpPercent);
@@ -60,6 +80,13 @@ namespace Rhythmify {
                 }
             }
             else {
+                if (rigid && rigidBody != null) {
+                    while (Time.time <= startTime + duration) {
+                        float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
+                        rigidBody.rotation = Quaternion.Lerp(startRot, endRot, lerpPercent);
+                        yield return null;
+                    }
+                }
                 if (local) {
                     while (Time.time <= startTime + duration) {
                         float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);

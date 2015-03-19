@@ -13,8 +13,12 @@ namespace Rhythmify {
         public int offset;
         public bool local;
         public bool relative;
+        public bool rigid;
 
         private Vector3 startPosition;
+        private Rigidbody rigidBody;
+
+
         override protected void init() {
             if (relative) {
                 if (local) {
@@ -26,6 +30,14 @@ namespace Rhythmify {
             }
             else {
                 startPosition = Vector3.zero;
+            }
+
+            if (rigid) {
+                rigidBody = gameObject.GetComponent<Rigidbody>();
+                if (rigidBody == null) {
+                    Debug.LogError("The GameObject " + gameObject + " has no RigidBody component attached!");
+                    Debug.Break();
+                }
             }
         }
 
@@ -49,7 +61,14 @@ namespace Rhythmify {
     
         private IEnumerator move(Vector3 startPos, Vector3 endPos, float duration) {
             float startTime = Time.time;
-            if (local) {
+            if (rigid && rigidBody != null) {
+                while (Time.time <= startTime + duration) {
+                    float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
+                    rigidBody.position = Vector3.Lerp(startPos, endPos, lerpPercent) + startPosition;
+                    yield return null;
+                }
+            }
+            else if (local) {
                 while (Time.time <= startTime + duration) {
                     float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
                     transform.localPosition = Vector3.Lerp(startPos, endPos, lerpPercent);
@@ -61,7 +80,7 @@ namespace Rhythmify {
                 while (Time.time <= startTime + duration) {
                     float lerpPercent = Mathf.Clamp01((Time.time - startTime) / duration);
                     transform.position = Vector3.Lerp(startPos, endPos, lerpPercent);
-                    transform.localPosition += startPosition;
+                    transform.position += startPosition;
                     yield return null;
                 }
             }
