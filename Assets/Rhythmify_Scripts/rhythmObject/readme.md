@@ -134,7 +134,7 @@ Type and Modifiers | Field Name
 
 <a name="MoveToPositions_local"></a>
 >**`public bool local`**  
->If true, will transform relative to local coordinates instead of world coordinates. This field is ignored if `rigid` is true.
+>If true, will transform relative to local coordinates instead of world coordinates. This field is ignored if [`rigid`](#MoveToPositions_rigid) is true.
 
 <a name="MoveToPositions_offset"></a>
 >**`public int offset`**  
@@ -179,7 +179,7 @@ Type and Modifiers | Field Name
 
 <a name="RotateToEulers_local"></a>
 >**`public bool local`**  
->If true, will transform relative to local coordinates instead of world coordinates. This field is ignored if `rigid` is true.
+>If true, will transform relative to local coordinates instead of world coordinates. This field is ignored if [`rigid`](#RotateToEulers_rigid) is true.
 
 <a name="RotateToEulers_offset"></a>
 >**`public int offset`**  
