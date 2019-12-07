@@ -14,6 +14,11 @@ namespace Rhythmify {
         public int[] indices;
         public int offset;
         public bool shared;
+        private new Renderer renderer;
+
+		override protected void init() {
+			renderer = GetComponent<Renderer>();
+		}
 
         override protected void rhythmUpdate(int beat) {
             int size = colorTransitions.Length;
