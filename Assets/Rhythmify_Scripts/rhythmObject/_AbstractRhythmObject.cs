@@ -29,7 +29,7 @@ namespace Rhythmify {
 
             GameObject bgmContainer = GameObject.FindGameObjectWithTag("Rhythmify_Music");
         
-            audioSource = bgmContainer.audio;
+            audioSource = bgmContainer.GetComponent<AudioSource>();
             audioClip = audioSource.clip;
         
             BPM = bgmContainer.GetComponent<MusicWrapper>().BPM;
