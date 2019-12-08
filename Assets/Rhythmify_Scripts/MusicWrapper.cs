@@ -20,7 +20,7 @@ namespace Rhythmify {
                 Debug.Break();
             }
 
-            audioSource = gameObject.audio;
+            audioSource = gameObject.GetComponent<AudioSource>();
             audioClip = audioSource.clip;
         }
     
